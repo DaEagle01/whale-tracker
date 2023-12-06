@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 const Signup = ({ isMobile }) => {
+    const [isHovered, setHovered] = useState(false);
+    const [isFocused, setFocused] = useState(false);
     const [email, setEmail] = useState("");
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -44,10 +46,14 @@ const Signup = ({ isMobile }) => {
                     >
                         <input
                             onChange={e => setEmail(e.target.value)}
+                            onMouseEnter={() => setHovered(true)}
+                            onMouseLeave={() => setHovered(false)}
+                            onFocus={() => setFocused(true)}
+                            onBlur={() => setFocused(false)}
                             type="text"
                             placeholder="Your email address"
                             style={{
-                                border: 'none',
+                                border: `1px solid ${(isHovered || isFocused) ? '#2f19cb' : '#E5E5E6'}`,
                                 outline: 'none',
                                 width: '100%',
                                 fontFamily: 'Inter',
